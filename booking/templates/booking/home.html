@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to My Hotel</title>
+    <link rel="stylesheet" href="{% static 'booking/style.css' %}">
+    <style>
+        body {
+            text-align: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 50px;
+            font-size: 40px;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            border-radius: 8px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My Hotel 🏨</h1>
+    <!-- Fixed the URL name to 'rooms' to match booking/urls.py -->
+    <a href="{% url 'rooms' %}" class="button">View Rooms</a>
+</body>
+</html>

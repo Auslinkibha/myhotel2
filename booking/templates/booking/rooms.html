@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rooms - My Hotel</title>
+    <link rel="stylesheet" href="{% static 'booking/style.css' %}">
+</head>
+<body>
+    <h1 style="text-align:center; margin-top:20px;">Our Rooms 🏨</h1>
+
+    {% if error %}
+        <p style="color:red; text-align:center;">{{ error }}</p>
+    {% endif %}
+
+    <div class="rooms-container">
+        {% for room in rooms %}
+            <div class="room-card">
+                <div class="img-container">
+                    {% if room.image %}
+                        <img src="{{ room.image.url }}" class="room-img">
+                    {% else %}
+                        <img src="https://source.unsplash.com/300x180/?hotel,room" class="room-img">
+                    {% endif %}
+
+                    {% if not room.available %}
+                        <div class="badge">Booked</div>
+                    {% endif %}
+                </div>
+
+                <div class="room-details">
+                    <div class="room-type">
+                        Room {{ room.room_number }} - {{ room.room_type }}
+                    </div>
+
+                    <div class="price">
+                        ₹{{ room.price }}
+                    </div>
+
+                    {% if room.available %}
+                        <a href="{% url 'book_room' room.id %}" class="book-button">
+                            Book Now
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
